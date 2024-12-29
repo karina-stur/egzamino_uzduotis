@@ -77,3 +77,68 @@ unordered_map<string, set<int>> indeksuKurimas(const string& text) {
     }
     return crossReference;
 }
+
+vector<string> rastiUrl(const string& text) {
+    vector<string> urls;
+    const regex url_regex(R"((https?://|www\.|[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})([^\s]*)?)", regex::icase);
+    auto words_begin = sregex_iterator(text.begin(), text.end(), url_regex);
+    auto words_end = sregex_iterator();
+
+    for (auto it = words_begin; it != words_end; ++it) {
+        urls.push_back(it->str());
+    }
+    return urls;
+}
+
+void pasikartojimuFailas(const unordered_map<string, int>& repeatedWords, const string& filename) {
+    ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        throw runtime_error("Unable to open file: " + filename);
+    }
+
+    const int wordColumnWidth = 20;
+    const int countColumnWidth = 5;
+
+    outFile << setw(wordColumnWidth) << left << "Word"
+        << setw(countColumnWidth) << "Count" << endl;
+
+    outFile << string(wordColumnWidth + countColumnWidth, '-') << endl;
+
+    for (const auto& pair : repeatedWords) {
+        outFile << setw(wordColumnWidth) << left << pair.first
+            << setw(countColumnWidth) << right << pair.second << endl;
+    }
+
+    outFile.close();
+}
+
+void indeksuFailas(const unordered_map<string, set<int>>& crossReference, const string& filename) {
+    ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        throw runtime_error("Unable to open file: " + filename);
+    }
+
+    outFile << setw(20) << left << "Word" << "Line Numbers\n";
+    outFile << string(30, '-') << "\n";
+
+    for (const auto& pair : crossReference) {
+        outFile << setw(20) << left << pair.first;
+        for (const int line : pair.second) {
+            outFile << line << " ";
+        }
+        outFile << "\n";
+    }
+    outFile.close();
+}
+
+void urlFailas(const vector<string>& urls, const string& filename) {
+    ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        throw runtime_error("Unable to open file: " + filename);
+    }
+
+    for (const auto& url : urls) {
+        outFile << url << "\n";
+    }
+    outFile.close();
+}
