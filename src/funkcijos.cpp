@@ -32,3 +32,48 @@ string tekstasIsFailo(const string& filename) {
     buffer << file.rdbuf();
     return buffer.str();
 }
+
+unordered_map<string, int> zodziuSkaicius(const string& text) {
+    unordered_map<string, int> wordCounts;
+    istringstream iss(text);
+    string word;
+
+    while (iss >> word) {
+        word = normalizuotiZodi(word);
+        if (!word.empty()) {
+            wordCounts[word]++;
+        }
+    }
+    return wordCounts;
+}
+
+unordered_map<string, int> rastiPasikartojimus(const unordered_map<string, int>& wordCounts) {
+    unordered_map<string, int> repeatedWords;
+    for (const auto& pair : wordCounts) {
+        if (pair.second > 1) {
+            repeatedWords[pair.first] = pair.second;
+        }
+    }
+    return repeatedWords;
+}
+
+unordered_map<string, set<int>> indeksuKurimas(const string& text) {
+    unordered_map<string, set<int>> crossReference;
+    istringstream iss(text);
+    string line;
+    int lineNumber = 0;
+
+    while (getline(iss, line)) {
+        ++lineNumber;
+        istringstream lineStream(line);
+        string word;
+
+        while (lineStream >> word) {
+            word = normalizuotiZodi(word);
+            if (!word.empty()) {
+                crossReference[word].insert(lineNumber);
+            }
+        }
+    }
+    return crossReference;
+}
