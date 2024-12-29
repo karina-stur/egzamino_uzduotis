@@ -99,8 +99,8 @@ void pasikartojimuFailas(const unordered_map<string, int>& repeatedWords, const 
     const int wordColumnWidth = 20;
     const int countColumnWidth = 5;
 
-    outFile << setw(wordColumnWidth) << left << "Word"
-        << setw(countColumnWidth) << "Count" << endl;
+    outFile << setw(wordColumnWidth) << left << "Zodis"
+        << setw(countColumnWidth) << "Pasikartojimu skaicius" << endl;
 
     outFile << string(wordColumnWidth + countColumnWidth, '-') << endl;
 
@@ -118,7 +118,7 @@ void indeksuFailas(const unordered_map<string, set<int>>& crossReference, const 
         throw runtime_error("Nepavyko atidaryti failo: " + filename);
     }
 
-    outFile << setw(20) << left << "Word" << "Line Numbers\n";
+    outFile << setw(20) << left << "Zodis" << "Eilutes numeris\n";
     outFile << string(30, '-') << "\n";
 
     for (const auto& pair : crossReference) {
