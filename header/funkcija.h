@@ -14,6 +14,11 @@
 #include <regex>
 #include <iomanip>
 #include <stdexcept>
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+using namespace std;
 
 std::string normalizuotiZodi(const std::string& word);
 std::string tekstasIsFailo(const std::string& filename);
