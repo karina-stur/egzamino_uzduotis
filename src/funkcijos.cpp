@@ -25,7 +25,7 @@ string normalizuotiZodi(const string& word) {
 string tekstasIsFailo(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) {
-        throw runtime_error("Unable to open file: " + filename);
+        throw runtime_error("Nepavyko atidaryti failo: " + filename);
     }
 
     stringstream buffer;
@@ -93,7 +93,7 @@ vector<string> rastiUrl(const string& text) {
 void pasikartojimuFailas(const unordered_map<string, int>& repeatedWords, const string& filename) {
     ofstream outFile(filename);
     if (!outFile.is_open()) {
-        throw runtime_error("Unable to open file: " + filename);
+        throw runtime_error("Nepavyko atidaryti failo: " + filename);
     }
 
     const int wordColumnWidth = 20;
@@ -115,7 +115,7 @@ void pasikartojimuFailas(const unordered_map<string, int>& repeatedWords, const 
 void indeksuFailas(const unordered_map<string, set<int>>& crossReference, const string& filename) {
     ofstream outFile(filename);
     if (!outFile.is_open()) {
-        throw runtime_error("Unable to open file: " + filename);
+        throw runtime_error("Nepavyko atidaryti failo: " + filename);
     }
 
     outFile << setw(20) << left << "Word" << "Line Numbers\n";
@@ -134,7 +134,7 @@ void indeksuFailas(const unordered_map<string, set<int>>& crossReference, const 
 void urlFailas(const vector<string>& urls, const string& filename) {
     ofstream outFile(filename);
     if (!outFile.is_open()) {
-        throw runtime_error("Unable to open file: " + filename);
+        throw runtime_error("Nepavyko atidaryti failo: " + filename);
     }
 
     for (const auto& url : urls) {
