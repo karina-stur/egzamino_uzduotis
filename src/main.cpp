@@ -18,9 +18,9 @@ int main() {
         auto urls = rastiUrl(text);
         urlFailas(urls, "nuorodos.txt");
         cout << "Buvo isvesti 3 failai: \n";
-        cout << "- zodziu_pasikartojimai.txt\n";
-        cout << "- indeksai.txt\n";
-        cout << "- nuorodos.txt\n";
+        cout << "- zodziu_pasikartojimai.txt (rasti zodziai ir isvestas ju pasikartojimo skaicius)\n";
+        cout << "- indeksai.txt (rasti zodziai ir ju pasikartojimo eilutes)\n";
+        cout << "- nuorodos.txt (failas su tekste rastomis nuorodomis)\n";
         return 0;
     }
     catch (const exception& e) {
